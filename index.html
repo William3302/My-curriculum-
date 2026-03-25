@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>William Soares | Portfólio & Pesquisa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #3b82f6;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        html { scroll-behavior: smooth; } /* Rolagem Suave Global */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animações de Entrada */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Classes para Revelação no Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navegação Superior Fixa */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--secondary); }
+
+        /* Header (Hero Section com Foto de Fundo) */
+        header {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* IMAGEM DE FUNDO DO ESTILO ANTERIOR */
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), 
+                        url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero h1 { font-size: 3.2rem; margin-bottom: 15px; font-weight: 800; }
+        .hero p { font-size: 1.1rem; color: #cbd5e1; max-width: 700px; }
+
+        /* Estilo Geral das Seções */
+        section {
+            padding: 80px 10%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: var(--dark);
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+        }
+
+        /* Grid System */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 25px;
+        }
+
+        /* Estilo dos Cards */
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #e2e8f0;
+            transition: 0.3s;
+        }
+
+        .card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .card h3 { color: var(--primary); margin-bottom: 8px; }
+        .date { font-size: 0.8rem; color: var(--gray); font-weight: 700; display: block; margin-bottom: 12px; }
+
+        /* Estilo da Seção de Habilidades (Tags) */
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background: #e2e8f0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .skill-category h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* Estilo Seção OBR (Destaque) */
+        .obr-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Redes Sociais */
+        .social-section {
+            text-align: center;
+            padding: 60px 0;
+            background: #f1f5f9;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .social-btn {
+            font-size: 2.5rem;
+            color: var(--dark);
+            transition: 0.3s;
+        }
+
+        .social-btn:hover { color: var(--primary); transform: scale(1.1); }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 2.5rem; }
+            section { padding: 60px 5%; }
+            nav { display: none; } /* Simplificação para mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#experiencia">Experiência</a>
+        <a href="#formacao">Formação</a>
+        <a href="#pesquisa-obr">Pesquisa OBR</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#contato">Contato</a>
+    </nav>
+
+    <header class="hero">
+        <h1>William Soares dos Reis de Oliveira</h1>
+        <p>Pesquisador de Robótica | Técnico de Operação na Transpetro | Mestrando no ITA</p>
+    </header>
+
+    <section id="habilidades" class="reveal">
+        <h2>Habilidades & Competências</h2>
+        <div class="grid">
+            <div class="card skill-category">
+                <h3><i class="fas fa-microchip"></i> Técnicas (Hard Skills)</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Controle PID</span>
+                    <span class="skill-tag">SolidWorks (Modelagem 3D)</span>
+                    <span class="skill-tag">Simulação (Sbotics)</span>
+                    <span class="skill-tag">Arduino / C++</span>
+                    <span class="skill-tag">Eletrônica Industrial</span>
+                    <span class="skill-tag">Impressão 3D (Corte Laser)</span>
+                    <span class="skill-tag">Operação de Processos</span>
+                </div>
+            </div>
+            <div class="card skill-category">
+                <h3><i class="fas fa-users"></i> Comportamentais (Soft Skills)</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Liderança de Projetos</span>
+                    <span class="skill-tag">Trabalho Colaborativo</span>
+                    <span class="skill-tag">Resolução de Problemas Complexos</span>
+                    <span class="skill-tag">Análise de Dados</span>
+                    <span class="skill-tag">Raciocínio Lógico</span>
+                </div>
+            </div>
+            <div class="card skill-category">
+                <h3><i class="fas fa-language"></i> Idiomas</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Inglês - Avançado</span>
+                    <span class="skill-tag">Italiano - Intermediário</span>
+                    <span class="skill-tag">Francês - Em Aprendizado</span>
+                    <span class="skill-tag">Espanhol - Básico</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiencia" class="reveal">
+        <h2>Experiência Profissional</h2>
+        <div class="grid">
+            <div class="card">
+                <span class="date">2024 - ATUAL</span>
+                <h3>Transpetro</h3>
+                <p><strong>Técnico de Operação</strong></p>
+                <p>Operação industrial e controle de processos no terminal de São Sebastião (SP).</p>
+            </div>
+            <div class="card">
+                <span class="date">2021 - 2024</span>
+                <h3>Interacao.com</h3>
+                <p><strong>Técnico de TI</strong></p>
+                <p>Responsável pela manutenção de infraestrutura e desenvolvimento digital.</p>
+            </div>
+            <div class="card">
+                <span class="date">2022 - 2023</span>
+                <h3>CNPQ</h3>
+                <p><strong>Pesquisador de IC Jr.</strong></p>
+                <p>Pesquisa aplicada em robótica competitiva e sistemas autônomos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pesquisa-obr" class="reveal">
+        <h2>Projeto Destaque: OBR 2022</h2>
+        <div class="obr-content">
+            <p style="margin-bottom: 25px;">Pesquisa focada no desenvolvimento de robôs competitivos de alto desempenho, utilizando ferramentas modernas de engenharia e lógica de programação avançada.</p>
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div style="background: #f8fafc; padding: 25px; border-radius: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">Inovação e Metodologia</h4>
+                    <p>Implementação de lógica de movimentação fluída via <strong>Controle PID</strong> e modelagem 3D no <strong>SolidWorks</strong> para equilíbrio do centro gravitacional.</p>
+                </div>
+                <div style="background: #f8fafc; padding: 25px; border-radius: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">Resultados de Elite</h4>
+                    <p>Como programador da equipe <em>Salvador Vipers</em>, conquistei o título de <strong>Campeão Estadual</strong> na etapa prática e o <strong>Prêmio Maker</strong> regional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="formacao" class="reveal" style="background-color: #f1f5f9; border-radius: 50px;">
+        <h2>Formação Acadêmica</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Mestrado em Engenharia da Computação</h3>
+                <p>Instituto Tecnológico de Aeronáutica (ITA).</p>
+            </div>
+            <div class="card">
+                <h3>Análise e Desenvolvimento de Sistemas</h3>
+                <p>Universidade Cruzeiro do Sul.</p>
+            </div>
+            <div class="card">
+                <h3>Engenharia de Produção</h3>
+                <p>Centro Universitário Leonardo da Vinci.</p>
+            </div>
+            <div class="card">
+                <h3>Técnico em Eletrônica</h3>
+                <p>IFBA - Instituto Federal da Bahia.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="reveal social-section">
+        <h2>Conecte-se Comigo</h2>
+        <p>Acompanhe meus projetos de código e minha trajetória profissional.</p>
+        <div class="social-links">
+            <a href="https://github.com/William3302" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/william-soares-dos-reis-de-oliveira-843839157/" target="_blank" class="social-btn"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:will28_reis@yahoo.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+        </div>
+    </section>
+
+    <footer>
+        <p>William Soares dos Reis de Oliveira</p>
+        <p style="opacity: 0.7; font-size: 0.9rem;">Salvador | Caraguatatuba | São José dos Campos</p>
+        <p style="margin-top: 15px; font-size: 0.75rem; opacity: 0.5;">© 2026 Portfólio Acadêmico e Profissional.</p>
+    </footer>
+
+    <script>
+        // Função para revelar elementos ao rolar a página
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // Distância antes de revelar
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Disparar no carregamento para a seção hero
+        window.addEventListener("load", reveal);
+    </script>
+</body>
+</html>
